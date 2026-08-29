@@ -23,7 +23,7 @@ ga_script = f"""
 """
 st.markdown(ga_script, unsafe_allow_html=True)
 
-# Stile grafico personalizzato (Dark Theme elegante con dettagli oro/blu)
+# Stile grafico personalizzato con immagini e card curate
 st.markdown("""
     <style>
     .main {
@@ -44,9 +44,10 @@ st.markdown("""
     .card {
         background-color: #161b22;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 12px;
         border: 1px solid #30363d;
         margin-bottom: 20px;
+        text-align: center;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -62,10 +63,10 @@ def load_data():
 
 df = load_data()
 
-# Intestazione Principale
+# Intestazione Principale con Immagine di Profilo o Banner
 st.title("🎵 Andrea Caliendo - Official Hub")
 st.markdown("### Creator Artist AI | Produttore Indipendente | Audiolibri & Podcast")
-st.write("Hub ufficiale di Andrea Caliendo: Creator Artist AI e produttore indipendente. Esplora Musicalando, AudioCalAI e Storie nell'Ombra tra musica d'autore, podcast True Crime, romanzi sonori e favole.")
+st.write("Benvenuto nell'hub ufficiale. Esplora i mondi di Musicalando, AudioCalAI e Storie nell'Ombra attraverso musica d'autore, podcast True Crime, romanzi sonori e favole.")
 
 st.divider()
 
@@ -74,13 +75,14 @@ st.sidebar.image("https://img.icons8.com/fluency/96/musical-notes.png", width=80
 st.sidebar.header("Navigazione")
 menu = st.sidebar.radio("Scegli una sezione:", ["🏠 Home & Progetti", "📂 Catalogo Completo", "ℹ️ Chi Sono"])
 
-# SEZIONE HOME
+# SEZIONE HOME CON IMMAGINI E CARD VISIVE
 if menu == "🏠 Home & Progetti":
     st.subheader("I Nostri Universi Creativi")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
+        st.image("https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=60", use_container_width=True)
         st.markdown("""
         <div class="card">
             <h3>🎧 Musicalando</h3>
@@ -89,6 +91,7 @@ if menu == "🏠 Home & Progetti":
         """, unsafe_allow_html=True)
         
     with col2:
+        st.image("https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&auto=format&fit=crop&q=60", use_container_width=True)
         st.markdown("""
         <div class="card">
             <h3>📖 AudioCalAI</h3>
@@ -97,6 +100,7 @@ if menu == "🏠 Home & Progetti":
         """, unsafe_allow_html=True)
         
     with col3:
+        st.image("https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&auto=format&fit=crop&q=60", use_container_width=True)
         st.markdown("""
         <div class="card">
             <h3>🎙️ Storie nell'Ombra</h3>
@@ -111,7 +115,6 @@ elif menu == "📂 Catalogo Completo":
     st.subheader("📂 Catalogo delle Opzioni e Produzioni")
     
     if df is not None:
-        # Filtro di ricerca testuale avanzato
         search_query = st.text_input("🔍 Cerca per brano, genere o progetto:", "")
         
         if search_query:
