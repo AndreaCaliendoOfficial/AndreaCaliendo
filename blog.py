@@ -4,7 +4,7 @@ import base64
 
 # Configurazione della pagina Streamlit
 st.set_page_config(
-    page_title="Andrea Caliendo | Hub Ufficiale",
+    page_title="Andrea Caliendo | Ufficiale Hub Creativo",
     page_icon="🎵",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -23,7 +23,7 @@ ga_script = f"""
 """
 st.markdown(ga_script, unsafe_allow_html=True)
 
-# Stile grafico personalizzato (Dark Theme elegante con dettagli oro/blu)
+# Stile grafico personalizzato e pulito
 st.markdown("""
     <style>
     .main {
@@ -37,9 +37,6 @@ st.markdown("""
         padding: 0.5rem 1rem;
         border: none;
         font-weight: bold;
-    }
-    .stButton>button:hover {
-        opacity: 0.9;
     }
     .card {
         background-color: #161b22;
@@ -63,16 +60,24 @@ def load_data():
 df = load_data()
 
 # Intestazione Principale
-st.title("🎵 Andrea Caliendo - Official Hub")
-st.markdown("### Creator Artist AI | Produttore Indipendente | Audiolibri & Podcast")
-st.write("Benvenuto nell'hub ufficiale. Esplora i progetti Musicalando, AudioCalAI e Storie nell'Ombra tra musica d'autore, podcast True Crime, romanzi sonori e favole.")
+st.title("🎵 Andrea Caliendo - Official Creator Hub")
+st.markdown("### Produttore Indipendente | Musica, Audiolibri, Podcast & Favole")
+st.write("Benvenuto nel portale ufficiale. Esplora tutti i progetti, le produzioni e i canali dedicati.")
 
 st.divider()
 
 # Barra laterale di navigazione
 st.sidebar.image("https://img.icons8.com/fluency/96/musical-notes.png", width=80)
-st.sidebar.header("Navigazione")
-menu = st.sidebar.radio("Scegli una sezione:", ["🏠 Home & Progetti", "📂 Catalogo Completo", "ℹ️ Chi Sono"])
+st.sidebar.header("Esplora Hub")
+menu = st.sidebar.radio("Scegli sezione:", [
+    "🏠 Home & Progetti", 
+    "🎧 Musicalando", 
+    "📖 AudioCalAI & Viaggi", 
+    "🎙️ Storie nell'Ombra (True Crime)", 
+    "👶 Il Mondo di Nonno Andrea",
+    "📂 Catalogo Completo", 
+    "ℹ️ Chi Sono"
+])
 
 # SEZIONE HOME
 if menu == "🏠 Home & Progetti":
@@ -84,7 +89,7 @@ if menu == "🏠 Home & Progetti":
         st.markdown("""
         <div class="card">
             <h3>🎧 Musicalando</h3>
-            <p>Musica d'autore, pop, urban napoletano e sonorità uniche prodotte con intelligenza artificiale e rifinite con cura sartoriale.</p>
+            <p>Musica d'autore, pop, urban napoletano e sonorità uniche prodotte con cura sartoriale.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -92,7 +97,7 @@ if menu == "🏠 Home & Progetti":
         st.markdown("""
         <div class="card">
             <h3>📖 AudioCalAI</h3>
-            <p>Favole per bambini, racconti di viaggio e romanzi sonori immersivi (come 'Siberia On The Road').</p>
+            <p>Racconti di viaggio, romanzi sonori immersivi e saghe on the road.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -100,22 +105,48 @@ if menu == "🏠 Home & Progetti":
         st.markdown("""
         <div class="card">
             <h3>🎙️ Storie nell'Ombra</h3>
-            <p>Podcast True Crime, inchieste e vicende misteriose narrate con una cura audio cinematografica.</p>
+            <p>Podcast True Crime, inchieste e vicende misteriose dal taglio cinematografico.</p>
         </div>
         """, unsafe_allow_html=True)
 
-    st.info("💡 **Novità:** Usa il menu a sinistra per navigare all'interno del catalogo completo delle produzioni.")
+    st.info("💡 Usa il menu laterale per navigare tra i singoli progetti e consultare il catalogo completo.")
+
+# SEZIONE MUSICALANDO
+elif menu == "🎧 Musicalando":
+    st.subheader("🎧 Musicalando - Canale Musicale")
+    st.write("Spazio dedicato alla musica d'autore, alle uscite discografiche e ai singoli pubblicati.")
+    st.markdown("---")
+    st.markdown("Ascolta i brani e scopri le ultime novità discografiche direttamente sulle piattaforme di streaming.")
+
+# SEZIONE AUDIOCALAI
+elif menu == "📖 AudioCalAI & Viaggi":
+    st.subheader("📖 AudioCalAI - Audiolibri e Viaggi")
+    st.write("Progetti narrativi e romanzi sonori, tra cui la saga 'Siberia On The Road: La Formula del Silenzio'.")
+    st.markdown("---")
+    st.markdown("Immergiti nei racconti di viaggio e nelle avventure sonore.")
+
+# SEZIONE STORIE NELL'OMBRA
+elif menu == "🎙️ Storie nell'Ombra (True Crime)":
+    st.subheader("🎙️ Storie nell'Ombra")
+    st.write("Podcast True Crime, inchieste e ricostruzioni di casi celebri (come Ted Bundy e Kenyel Brown).")
+    st.markdown("---")
+    st.markdown("Indagini e profili psicologici raccontati con un'atmosfera audio immersiva.")
+
+# SEZIONE NONNO ANDREA
+elif menu == "👶 Il Mondo di Nonno Andrea":
+    st.subheader("👶 Il Mondo di Nonno Andrea")
+    st.write("Favole della buonanotte, ninne nanne e contenuti dedicati ai più piccoli e alle famiglie.")
+    st.markdown("---")
+    st.markdown("Un angolo di dolcezza e fantasia con storie pensate per accompagnare i bambini nel mondo dei sogni.")
 
 # SEZIONE CATALOGO
 elif menu == "📂 Catalogo Completo":
-    st.subheader("📂 Catalogo delle Opzioni e Produzioni")
+    st.subheader("📂 Catalogo Ufficiale delle Opzioni e Produzioni")
     
     if df is not None:
-        # Filtro di ricerca testuale
-        search_query = st.text_input("🔍 Cerca per brano, genere o progetto:", "")
+        search_query = st.text_input("🔍 Cerca nel catalogo per brano, genere o progetto:", "")
         
         if search_query:
-            # Filtra il DataFrame in base alla ricerca (cercando in tutte le colonne di testo)
             mask = df.astype(str).apply(lambda x: x.str.contains(search_query, case=False, na=False)).any(axis=1)
             filtered_df = df[mask]
         else:
@@ -124,7 +155,7 @@ elif menu == "📂 Catalogo Completo":
         st.dataframe(filtered_df, use_container_width=True)
         st.caption(f"Totale elementi visualizzati: {len(filtered_df)}")
     else:
-        st.warning("⚠️ Il file 'CATALOGO.xlsx' non è stato trovato o non contiene dati corretti nel repository.")
+        st.warning("⚠️ Il file 'CATALOGO.xlsx' non è attualmente disponibile o risulta vuoto nel repository.")
 
 # SEZIONE CHI SONO
 elif menu == "ℹ️ Chi Sono":
@@ -132,11 +163,9 @@ elif menu == "ℹ️ Chi Sono":
     st.write("""
     Andrea Caliendo è un produttore indipendente, autore e sound designer attivo nella creazione di contenuti digitali avanzati, 
     musica multipiattaforma e narrazioni audio immersive.
-    
-    Tutti i brani e i podcast sono realizzati combinando tecniche di IA all'avanguardia con un meticoloso lavoro di mastering e post-produzione audio.
     """)
     st.markdown("---")
-    st.write("🌐 **Canali ufficiali attivi:** Musicalando | AudioCalAI | Storie nell'Ombra")
+    st.write("🌐 **Canali ufficiali:** Musicalando | AudioCalAI | Storie nell'Ombra")
 
 # Footer in basso
 st.markdown("---")
